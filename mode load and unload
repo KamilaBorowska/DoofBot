@@ -1,0 +1,35 @@
+on *:mode:#: {
+  if ($1 == +m) { .unload -rs allcommands.mrc
+  .load -rs mmodecommands.mrc }
+  elseif ($1 == -m) { .unload -rs mmodecommands.mrc
+  .load -rs allcommands.mrc }
+else { halt } }
+
+on 3:text:!load *:#: {
+  var %a = $script(allcommands.mrc)
+  var %b = $script(mmodecommands.mrc)
+  if ($2 == all) { goto all }
+  elseif ($2 == mmode) { goto mmode }
+  else { halt }
+
+  :all
+  if (%a == $null) { .unload -rs mmodecommands.mrc
+    .load -rs allcommands.mrc
+    .msg $chan All Commands loaded!
+  halt }
+  elseif (%a != $null) { .msg $chan All Commands already loaded 
+  halt }
+  else { .msg $chan Error
+  halt }
+
+  :mmode
+  if (%b == $null) { .unload -rs allcommands.mrc 
+    .load -rs mmodecommands.mrc
+    .msg $chan Slow Commands Loaded!
+  halt }
+  elseif (%b != $null) { .msg $chan Slow Commands Already loaded!
+  halt }
+  else { .msg $chan Error
+  halt }
+
+}

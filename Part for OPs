@@ -1,0 +1,5 @@
+on *:notice:!join*:#:
+{ if ($nick isop #) { 
+    if ($2 != $null ) { join $2 }
+  else { notice $nick Please specify a channel } }
+else { halt } }
