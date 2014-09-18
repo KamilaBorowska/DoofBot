@@ -1,35 +1,91 @@
 on *:mode:#: {
   if ($1 == +m) { .unload -rs allcommands.mrc
-  .load -rs mmodecommands.mrc }
+    .load -rs mmodecommands.mrc
+  set %mode m }
   elseif ($1 == -m) { .unload -rs mmodecommands.mrc
-  .load -rs allcommands.mrc }
+    .load -rs allcommands.mrc
+  set %mode a }
 else { halt } }
 
 on 3:text:!load *:#: {
   var %a = $script(allcommands.mrc)
   var %b = $script(mmodecommands.mrc)
+  var %c = $script(twitchcommands.mrc)
   if ($2 == all) { goto all }
-  elseif ($2 == mmode) { goto mmode }
-  else { halt }
+  if ($2 == mmode) { goto mmode }
+  if ($2 == twitch) { goto twitch }
+  else { msg $chan error load: not a valid command set | halt }
 
   :all
-  if (%a == $null) { .unload -rs mmodecommands.mrc
-    .load -rs allcommands.mrc
-    .msg $chan All Commands loaded!
-  halt }
+  if ( %mode != a) { 
+    if ( %mode = m ) { .unload -rs mmodecommands.mrc
+      .load -rs allcommands.mrc
+      .msg $chan All Commands loaded!
+      set %mode a
+    halt }
+    if ( %mode = t ) { .unload -rs twitchcommands.mrc
+      .load -rs allcommands.mrc
+      .msg $chan All Commands Loaded
+      set %mode a
+    halt }
+  else { msg $chan error all } }
   elseif (%a != $null) { .msg $chan All Commands already loaded 
   halt }
   else { .msg $chan Error
   halt }
 
   :mmode
-  if (%b == $null) { .unload -rs allcommands.mrc 
-    .load -rs mmodecommands.mrc
-    .msg $chan Slow Commands Loaded!
-  halt }
+  if ( %mode != m ) { 
+    if ( %mode = a) { .unload -rs allcommands.mrc 
+      .load -rs mmodecommands.mrc
+      .msg $chan Slow Commands Loaded!
+      set %mode m 
+    halt }
+    if ( %mode = t ) { .unload -rs twitchcommands.mrc
+      .load -rs mmodecommands.mrc
+      .msg $chan Slow Commands Loaded!
+      set %mode m
+    halt }
+  else { msg $chan error mmode } }
   elseif (%b != $null) { .msg $chan Slow Commands Already loaded!
   halt }
   else { .msg $chan Error
+  halt }
+
+  :twitch
+  if ( %mode != t ) { 
+    if ( %mode == a ) { .unload -rs allcommands.mrc 
+      .load -rs twitchcommands.mrc
+      .msg $chan Twitch Commands Loaded!
+      set %mode t
+    halt }
+    if ( %mode == m ) { .unload -rs mmodecommands.mrc
+      .load -rs twitchcommands.mrc
+      .msg $chan Twitch Commands Loaded!!
+      set %mode t
+  halt } }
+  elseif ( %mode == t ) { .msg $chan Twitch Commands Already loaded!
+  halt }
+  else { .msg $chan Error twitch mode
+  halt }
+
+
+}
+
+; mode a = all commands
+; mode m = mmode(slow) commands
+; mode t = Twitch Commands
+
+on 3:text:!trout*:#: {
+
+  if ( %trout = 0 ) { .load -rs "trout spam on.mrc"
+    .msg $chan TROUTPOCALYPSE!!!
+    set %trout 1 
+  halt }
+
+  if ( %trout = 1 ) { .unload -rs "trout spam on.mrc"
+    .msg $chan The Trout calmed down.
+    set %trout 0 
   halt }
 
 }

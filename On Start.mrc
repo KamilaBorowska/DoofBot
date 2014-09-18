@@ -5,15 +5,15 @@ on *:START: {
 on *:CONNECT: {
   if ($network == freenode) {
     /nick Lotid
-    .msg NickServ GHOST DoofBot poketown95
+    .msg NickServ GHOST DoofBot poketownLeonys2
     /nick DoofBot
-    .msg NickServ IDENTIFY leonys poketown95
-    .msg NickServ IDENTIFY DoofBot poketown95
+    .msg NickServ IDENTIFY leonys poketownLeonys2
+    .msg NickServ IDENTIFY DoofBot poketownLeonys2
     ; Put any channels you'd like to join under this line.
     /join #tppleague
     /join #tpprp
     /join #leonys
-    .msg #tppleague SunFlare beep boop!
-    .msg #tpprp SunFlare beep boop!
+    .msg #tppleague DoofBot Beep Boop
+    .msg #tpprp DoofBot Beep Boop
     .msg #leonys Test beep boop!
   }

@@ -30,12 +30,27 @@ msg # $read(pigu.txt) }
 on *:text:!deadcat*:#: {
 msg # $read(deadcat.txt) }
 
+on *:text:!asssparks*:#: {
+msg # $read(tustin.txt) }
+
+on 3:text:!howto*:#: {
+msg # $read(iwamiger.txt) }
+
+on *:text:!cheese*:#: {
+msg # $read(mystpixels.txt) }
+
+on *:text:!bunker*:#: {
+msg # $read(liria.txt) }
+
+on $*:text:/!jim|!leonys|!firejim/:#: {
+msg # $read(firejim.txt) }
+
 on *:TEXT:!askhelix*:#:{
   ;;if ((%floodhelix) || ($($+(%,floodhelix.,$nick),2))) { return }
   ;;set -u2 %floodhelix On
   ;;set -u10 %floodhelix. $+ $nick On
   {
-    var %r = $rand(1,61)
+    var %r = $rand(1,62)
     if (%r == 1) msg $chan Helix: $nick $+ , Concentrate and ask again.
     if (%r == 2) msg $chan Helix: $nick $+ , My sources say no.
     if (%r == 3) msg $chan Helix: $nick $+ , Better not tell you now.
@@ -97,7 +112,7 @@ on *:TEXT:!askhelix*:#:{
     if (%r == 59) msg $chan Helix slaps $nick around a bit with a large trout!
     if (%r == 60) msg $chan Helix: $nick $+ , i dunno
     if (%r == 61) msg $chan Helix: $nick $+ , AW SNAP
-    if (%r == 62) msg $chan Helix: $nick $+ , Leonys for Tomodachi Life?
+    if (%r == 62) msg $chan Helix: $nick $+ , I need more commands. Submit some to Leonys via Reddit and your's can be here!
 
 
 } }
@@ -348,6 +363,12 @@ on *:text:*!reddit*:#: {
   ;;set -u60 %floodreddit $+ $nick On
 msg $chan TwitchPlaysPokémon Subreddit $nick $+ : http://www.reddit.com/r/twitchplayspokemon $+ }
 
+on *:text:*!updater*:#: {
+  ;;if ((%floodupdater) || ($($+(%,floodupdater.,$nick),2))) { return }
+  ;;set -u30 %floodupdater On
+  ;;set -u60 %floodupdater $+ $nick On
+msg $chan TwitchPlayPokémon Arena Live Updater here $nick $+ : http://www.reddit.com/live/t9cxtjfhj8w3 $+ }
+
 on *:text:*!league*:#: {
   ;;if ((%floodleague) || ($($+(%,floodleague.,$nick),2))) { return }
   ;;set -u30 %floodleague On
@@ -449,6 +470,12 @@ on $*:text:/^!tslap */:#: {
   if ($2- == $null) { describe # slaps $nick around a bit with a large trout. }
 else { describe # slaps $2- around a bit with a large trout. } }
 
+on *:text:!barnham*:#: {
+msg # Barnham! Barnham! Barnham! Barnham! $+ }
+
+on *:text:!ignoredrule*:#: {
+msg # "Please remember to not abuse!" - Leonys, 2014 $+ }
+
 on *:text:!command*:#: {
   ;;if ((%floodcommands) || ($($+(%,floodcommands.,$nick),2))) { return }
   ;;set -u30 %floodcommands On
@@ -467,8 +494,8 @@ on *:text:!summon*:#: {
 } }
 
 
-; on *:text:!source*:#: {
-;;if ((%floodsource) || ($($+(%,floodsource.,$nick),2))) { return }
-;;set -u30 %floodsource On
-;;set -u60 %floodsource $+ $nick On
-; msg $chan How everything works! The Source $nick $+ : https://github.com/Leonys2/DoofBot $+ }
+on *:text:!source*:#: {
+  ;;if ((%floodsource) || ($($+(%,floodsource.,$nick),2))) { return }
+  ;;set -u30 %floodsource On
+  ;;set -u60 %floodsource $+ $nick On
+msg $chan How everything works! The Source $nick $+ : https://github.com/Leonys2/DoofBot $+ }
