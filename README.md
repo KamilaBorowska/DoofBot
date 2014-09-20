@@ -6,3 +6,5 @@ Doofbot for #TPPLeague and #TPPRP. Also made brief appearance as "StadiumEntei" 
 The bot is written using mIRC's scripting language (mSL.)
 ***************************************************
 Futute big new additions on DoofBot that NEEDS to be worked on is its own deviation of the "!tell" commands and regex replacement. Also the ability for the bot to replay with names of website when a url is linked into chat needs to be worked on. May need help on that.
+***********************
+Maybe not. It might be dead.
